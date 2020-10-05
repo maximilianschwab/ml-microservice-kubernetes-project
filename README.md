@@ -1,42 +1,43 @@
 [![ml-microservice-kubernetes-project](https://circleci.com/gh/maximilianschwab/ml-microservice-kubernetes-project.svg?style=svg)](https://app.circleci.com/pipelines/github/maximilianschwab)
 
-## Project Overview
+## Summary
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+The project is about a pre-trained, sklearn model that is used to predict the housing prices in Boston based on features like average rooms in a home, highway access and teacher-to-pupil ratio. The data which is used for the prediction is taken from Kaggle. A Flask app written in Python is used to serve the predictions via an API.
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+# Instructions
 
-### Project Tasks
+## Run this commands on your linux machine
+* Install python 3.7 with the following command: `sudo apt install python3.7` 
+* Switch to the project directory
+* Execute `make setup`
+* Execute `source ~/venv/.devops/bin/activate`
+* Execute `make install`
+* Execute `python app.py`
+* Execute `./make_prediction.sh` to get a prediction result
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
+## Runt the following scripts to build the Docker image and execute the corresponding container (you need to install Docker first!)
+* Execute `./run_docker.sh`
+* Execute `./make_prediction.sh` to make a prediction
 
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
 
----
+## Running the Docker container inside a Kubernetes cluster (kubectl and minikube is required!)
+* Execute `minikube start`
+* Execute `./run_kubernetes.sh`
+* Execute `./make_prediction.sh` to get a prediction result
 
-## Setup the Environment
 
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
+# File Structure
 
-### Running `app.py`
-
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
-
-### Kubernetes Steps
-
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+├── README.md ==> the main documentation
+├── Dockerfile ==> This file is needed to create the docker image
+├── app.py  ==> Contains the Flask application
+├── make_prediction.sh ==> Contains JSON payload for get prediction form app.py\
+├── Makefile ==> Needed for linting, setup and testing
+├── output_txt_files\
+│   ├── docker_out.txt ==> terminal output after running the docker container and doing a prediction with make_prediction.sh \
+│   └── kubernetes_out.txt ==> terminal output after running the kubernetes cluster with the corresponding container and doing a prediction with make_prediction.sh \
+├── requirements.txt ==> Python dependencies for the Flask application\
+├── run_kubernetes.sh  ==> shell script to run the kubernetes cluster \
+├── run_docker.sh ==> shell script to create the docker image and container\
+└── upload_docker.sh  ==> script to upload the docker image to Dockerhub
