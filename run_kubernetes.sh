@@ -8,7 +8,7 @@ dockerpath="maximilianschwab/udacity-devops-project"
 
 # Step 2
 # Run the Docker Hub container with kubernetes
-kubectl run udacity-devops-project --image=$dockerpath --port=80
+kubectl run udacity-devops-project --port=80 --image=$dockerpath udacity-devops-project
 
 
 # Step 3:
@@ -18,4 +18,3 @@ kubectl get pods
 # Step 4:
 # Forward the container port to a host
 kubectl port-forward udacity-devops-project 8000:80
-#udacity-devops-project-675985b4d8-xcfrp
