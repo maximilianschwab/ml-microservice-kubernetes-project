@@ -29,14 +29,14 @@ The project is about a pre-trained, sklearn model that is used to predict the ho
 
 # File Structure
 
-├── README.md ==> the main documentation
-├── Dockerfile ==> This file is needed to create the docker image
-├── app.py  ==> Contains the Flask application
+├── README.md ==> the main documentation\
+├── Dockerfile ==> This file is needed to create the docker image\
+├── app.py  ==> Contains the Flask application\
 ├── make_prediction.sh ==> Contains JSON payload for get prediction form app.py\
-├── Makefile ==> Needed for linting, setup and testing
+├── Makefile ==> Needed for linting, setup and testing\
 ├── output_txt_files\
 │   ├── docker_out.txt ==> terminal output after running the docker container and doing a prediction with make_prediction.sh \
-│   └── kubernetes_out.txt ==> terminal output after running the kubernetes cluster with the corresponding container and doing a prediction with make_prediction.sh \
+│   └── kubernetes_out.txt ==> terminal output after running the kubernetes cluster and doing a prediction with make_prediction.sh \
 ├── requirements.txt ==> Python dependencies for the Flask application\
 ├── run_kubernetes.sh  ==> shell script to run the kubernetes cluster \
 ├── run_docker.sh ==> shell script to create the docker image and container\
